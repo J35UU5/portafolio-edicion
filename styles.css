@@ -1,0 +1,344 @@
+/* Custom Properties (Diseño Claro y Minimalista Apple-style) */
+:root {
+    --bg-main: #F5F5F7;          /* Fondo principal (Blanco Apple) */
+    --bg-surface: #CFCFCF;       /* Fondo de tarjetas (Color Terciario) */
+    --text-primary: #1D1D1F;     /* Texto principal (Gris oscuro casi negro) */
+    --text-secondary: #555557;   /* Texto secundario para contraste */
+    --accent-color: #B9C4B7;     /* Detalles y destacados (Verde) */
+    --accent-glow: rgba(185, 196, 183, 0.4); /* Resplandor del botón */
+    --border-color: #CFCFCF;     /* Bordes y separadores (Color Terciario) */
+    --transition-speed: 0.3s;
+}
+
+/* Reset y Estilos Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color var(--transition-speed) ease;
+}
+
+/* Tipografía */
+h1, h2, h3 {
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.section-title {
+    font-size: clamp(2rem, 5vw, 2.5rem);
+    margin-bottom: 3rem;
+    text-align: center;
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* --- Hero Section --- */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    padding: 4rem 0;
+}
+
+/* Efecto de resplandor sutil en el fondo del Hero */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60vw;
+    height: 60vw;
+    max-width: 600px;
+    max-height: 600px;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+    opacity: 0.2;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.hero-title {
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+}
+
+.hero-subtitle {
+    font-size: clamp(1.2rem, 4vw, 2rem);
+    color: var(--accent-color);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.hero-intro {
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    color: var(--text-secondary);
+    max-width: 650px;
+    margin: 0 auto 2.5rem auto;
+    font-weight: 300;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background-color: var(--accent-color);
+    color: var(--text-primary);
+    border-radius: 50px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: all var(--transition-speed) ease;
+    box-shadow: 0 4px 20px var(--accent-glow);
+}
+
+.cta-button:hover {
+    background-color: #a8b3a6; /* Tono verde ligeramente más oscuro */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px var(--accent-glow);
+}
+
+/* --- Sección de Portafolio --- */
+.portfolio-section {
+    padding: 6rem 0;
+}
+
+/* CSS Grid para los videos (1 a 3 columnas) */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+}
+
+.project-card {
+    background-color: var(--bg-surface);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease, border-color var(--transition-speed) ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1); /* Sombra difusa suave para tema claro */
+    border-color: var(--accent-color);
+}
+
+/* Contenedor responsivo base para iframes */
+.iframe-container {
+    width: 100%;
+    background-color: #000;
+    position: relative;
+    overflow: hidden; /* Necesario para el efecto de escala interior */
+}
+
+/* Clases de proporción específicas (Aspect Ratio) */
+.video-horizontal {
+    aspect-ratio: 16 / 9;
+}
+
+.video-vertical {
+    aspect-ratio: 9 / 16;
+}
+
+.iframe-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), filter 0.6s ease;
+    filter: brightness(0.85); /* Ligeramente oscuro por defecto */
+}
+
+/* Efecto hover visual en los videos (Escala y brillo) */
+.project-card:hover .iframe-container iframe {
+    transform: scale(1.05); /* Zoom suave al hacer hover */
+    filter: brightness(1.1); /* Resalta el video */
+}
+
+/* Contenedor de comparación (dos iframes paralelos) */
+.comparison-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px; /* Separación sutil entre videos */
+    background-color: #000;
+}
+
+/* Contenedor del video (Placeholder Próximamente) */
+.video-placeholder {
+    width: 100%;
+    background-color: #E8E8E8; /* Fondo más claro para los placeholders */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+}
+
+.video-placeholder span {
+    position: relative;
+    z-index: 2;
+    transition: transform 0.6s ease, color 0.6s ease;
+}
+
+.project-card:hover .video-placeholder span {
+    transform: scale(1.1);
+    color: var(--text-primary);
+}
+
+.placeholder-card {
+    opacity: 0.6;
+    cursor: default; /* Removemos pointer-events para permitir hover en las tarjetas futuras si se desea */
+}
+
+/* Etiquetas de categoría */
+.category-tag {
+    display: inline-block;
+    margin-top: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    background-color: rgba(185, 196, 183, 0.3); /* Verde con opacidad */
+    color: var(--text-primary); /* Texto oscuro para legibilidad */
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.project-info {
+    padding: 1.5rem;
+}
+
+.project-info h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.project-info p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+/* --- Sección de Contacto (Footer) --- */
+.contact-section {
+    padding: 6rem 0 3rem 0;
+    background-color: #484F48; /* Color oscuro solicitado */
+    color: var(--bg-main);
+    text-align: center;
+    border-top: none; /* Quitamos el borde para que el color sólido resalte limpio */
+}
+
+/* Forzamos el título a blanco para que sea visible sobre fondo oscuro */
+.contact-section .section-title {
+    background: none;
+    -webkit-text-fill-color: var(--bg-main);
+    color: var(--bg-main);
+}
+
+.contact-links {
+    margin-bottom: 2.5rem;
+}
+
+.contact-link {
+    font-size: clamp(1.2rem, 4vw, 2rem);
+    font-weight: 600;
+    color: var(--accent-color);
+    position: relative;
+    padding-bottom: 5px;
+}
+
+/* Animación de subrayado en hover para el email */
+.contact-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--accent-color);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform var(--transition-speed) ease;
+}
+
+.contact-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.social-icon {
+    font-size: 1.5rem; /* Tamaño optimizado para iconos */
+    color: var(--accent-color); /* Color verde secundario para que resalten */
+    transition: color var(--transition-speed) ease, transform var(--transition-speed) ease;
+}
+
+.social-icon:hover {
+    color: var(--bg-main); /* Cambia a blanco al pasar el cursor */
+    transform: translateY(-4px); /* Animación un poco más pronunciada */
+}
+
+.copyright {
+    color: var(--bg-main);
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+
+/* --- Ajustes Responsivos --- */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+    
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero-section {
+        padding: 6rem 0;
+    }
+}
