@@ -107,11 +107,22 @@ h1, h2, h3 {
     font-weight: 300;
 }
 
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
 .cta-button {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
     padding: 1rem 2.5rem;
     background-color: var(--accent-color);
     color: var(--text-primary);
+    border: 2px solid var(--accent-color);
     border-radius: 50px;
     font-weight: 600;
     letter-spacing: 0.05em;
@@ -121,9 +132,21 @@ h1, h2, h3 {
 }
 
 .cta-button:hover {
-    background-color: #a8b3a6; /* Tono verde ligeramente más oscuro */
+    background-color: #a8b3a6; 
+    border-color: #a8b3a6;
     transform: translateY(-2px);
     box-shadow: 0 6px 25px var(--accent-glow);
+}
+
+.cta-button.secondary {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.cta-button.secondary:hover {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: var(--text-primary);
 }
 
 /* --- Sección de Portafolio --- */
@@ -274,33 +297,16 @@ h1, h2, h3 {
 
 .contact-links {
     margin-bottom: 2.5rem;
+    display: flex;
+    justify-content: center;
 }
 
-.contact-link {
-    font-size: clamp(1.2rem, 4vw, 2rem);
-    font-weight: 600;
+.contact-section .cta-button.secondary {
     color: var(--accent-color);
-    position: relative;
-    padding-bottom: 5px;
 }
 
-/* Animación de subrayado en hover para el email */
-.contact-link::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: var(--accent-color);
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform var(--transition-speed) ease;
-}
-
-.contact-link:hover::after {
-    transform: scaleX(1);
-    transform-origin: left;
+.contact-section .cta-button.secondary:hover {
+    color: var(--text-primary);
 }
 
 .social-links {
